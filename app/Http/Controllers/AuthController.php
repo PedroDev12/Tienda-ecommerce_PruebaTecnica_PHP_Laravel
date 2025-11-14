@@ -24,6 +24,7 @@ class AuthController extends Controller
             'password' => bcrypt($data['password'])
         ]);
 
+        dd($user);
         Cart::create(['user_id' => $user->id]);
 
         return response()->json(['message' => 'User registered successfully'], 201);

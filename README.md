@@ -1,59 +1,131 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛍️ FakeStore API – Prueba Técnica Backend PHP (Laravel)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 🚀 Descripción
+API RESTful desarrollada con **Laravel 12** que simula la API de [FakeStore](https://fakestoreapi.com/docs).  
+Permite gestionar usuarios, categorías, productos y carritos de compra.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ⚙️ Tecnologías usadas
+- PHP 8.2
+- Laravel 12
+- MariaDB
+- Composer
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🧩 Estructura del Proyecto
+app/
+├─ Http/
+│ └─ Controllers/
+│ ├─ Api/
+│ │ ├─ CartController.php
+│ │ ├─ CategoryController.php
+│ │ ├─ ProductController.php
+│ │ └─ CartController.php
+│ └─ Controller.php
+├─ Models/
+config/
+routes/
+├─ api.php
+└─ web.php
+database/
+├─ migrations/
+└─ seeders/
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🧰 Instalación y configuración
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Clona el repositorio
+   git clone https://github.com/tuusuario/fakestore-api.git
+   cd fakestore-api
 
-## Laravel Sponsors
+2. Instala dependencias:
+   composer install
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. Configura la base de datos en .env:
+    Descarga archivo .env(sino lo tienes): https://drive.google.com/file/d/1bGsDwLfS1ao6RVHOqbn5ZC6Jeldhhe1g/view?usp=sharing 
 
-### Premium Partners
+4. Ejecuta migraciones y seeders:
+    php artisan migrate --seed
+   
+   
+                                🔐 Endpoints principales
+👤 Usuarios
+Método	Endpoint	Descripción	Ejemplo 
+POST	/api/register	Registrar usuario	{ "username": "Pedro", "email": "pedro@mail.com", "password": "123456" }
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+POST	/api/login	Iniciar sesión	{ "email": "pedro@mail.com", "password": "123456" }
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+🏷️ Categorías
+Método	Endpoint	Descripción	Ejemplo
+GET	/api/categories	Listar categorías	—
 
-## Code of Conduct
+POST	/api/categories	Crear categoría	
+{
+  "id": 1,
+  "name": "Electrónica"
+}
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+PUT	/api/categories/{id}	Actualizar categoría
+{
+  "id": 1,
+  "name": "Ropa"
+}
 
-## Security Vulnerabilities
+DELETE	/api/categories/{id}	Eliminar categoría	—
+{
+  "id": 1,
+  "name": "Ropa"
+}
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+📦 Productos
+Método	Endpoint	Descripción	Ejemplo
+GET	/api/products	Listar todos los productos	—
 
-## License
+GET	/api/products?category_id=1&order=asc	Filtrar por categoría y orden	—
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+POST	/api/products	Crear producto
+{
+    "title": "Laptop Dell Inspiron",
+    "description": "Laptop 15.6\" i7, 16GB RAM, 512GB SSD",
+    "price": "1200.99",
+    "category_id": "1",
+    "updated_at": "2025-11-14T12:42:07.000000Z",
+    "created_at": "2025-11-14T12:42:07.000000Z",
+    "id": 9
+}
+
+{
+    "title": "Mouse Logitech G203",
+    "description": "Mouse gamer con RGB y sensor de alta precisión",
+    "price": "25.5",
+    "category_id": "1",
+    "updated_at": "2025-11-14T12:43:14.000000Z",
+    "created_at": "2025-11-14T12:43:14.000000Z",
+    "id": 10
+}
+
+PUT	/api/products/{id}	Actualizar producto	{ "precio": 1400 }
+
+DELETE	/api/products/{id}	Eliminar producto	—
+
+
+
+🛒 Carrito
+Método	Endpoint	Descripción	Ejemplo
+
+POST	/api/cart/add	Añadir producto	{ "user_id": 1, "product_id": 2, "cantidad": 3 }
+
+GET	/api/cart/{userId}	Ver carrito del usuario	—
+
+DELETE	/api/cart/{id}	Eliminar producto del carrito	—
+
+🧑‍💻 Autor
+
+Pedro Luis
+Desarrollador Full Stack
+📧 pedroluisperez33@mail.com
+
+💻 Prueba técnica - VIXICOM
