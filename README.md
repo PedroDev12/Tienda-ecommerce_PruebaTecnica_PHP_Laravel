@@ -37,7 +37,7 @@ database/
 ## 🧰 Instalación y configuración
 
 1. Clona el repositorio
-   git clone https://github.com/tuusuario/fakestore-api.git
+   https://github.com/PedroDev12/Tienda-ecommerce_PruebaTecnica_PHP_Laravel.git
    cd fakestore-api
 
 2. Instala dependencias:
