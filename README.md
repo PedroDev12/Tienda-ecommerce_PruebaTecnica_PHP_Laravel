@@ -38,15 +38,16 @@ database/
 
 1. Clona el repositorio
    https://github.com/PedroDev12/Tienda-ecommerce_PruebaTecnica_PHP_Laravel.git
+
    cd fakestore-api
 
-2. Instala dependencias:
+3. Instala dependencias:
    composer install
 
-3. Configura la base de datos en .env:
+4. Configura la base de datos en .env:
     Descarga archivo .env(sino lo tienes): https://drive.google.com/file/d/1bGsDwLfS1ao6RVHOqbn5ZC6Jeldhhe1g/view?usp=sharing 
 
-4. Ejecuta migraciones y seeders:
+5. Ejecuta migraciones y seeders:
     php artisan migrate --seed
    
    
